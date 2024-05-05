@@ -1,0 +1,26 @@
+# ninja log v5
+195	2484	1714864662004880344	CMakeFiles/JaffZork.dir/JaffZork_autogen/mocs_compilation.cpp.o	c82b3080a68ab1d7
+409	2284	1714862854229484406	CMakeFiles/JaffZork.dir/mainwindow.cpp.o	93029524ac28de3c
+195	2479	1714864662000304596	CMakeFiles/JaffZork.dir/main.cpp.o	80f733b35b03cd60
+412	617	1714862852541522437	CMakeFiles/JaffZork.dir/roomwidget.cpp.o	28c6a23fbc5faafc
+46	897	1714915537458575621	CMakeFiles/JaffZork.dir/player.cpp.o	48bb7fbe490f3722
+6	44	1714915845902558919	JaffZork_autogen/mocs_compilation.cpp	e799e84dcfbddf42
+45	1019	1714915537581384780	CMakeFiles/JaffZork.dir/room.cpp.o	d17ade177fc7e85c
+6	44	1714915845902558919	/Users/andrewjaffray/Documents/Year 1/Block4/JaffZork/build/Qt_6_7_0_for_macOS-Debug/JaffZork_autogen/timestamp	e799e84dcfbddf42
+6	44	1714915845902558919	/Users/andrewjaffray/Documents/Year 1/Block4/JaffZork/build/Qt_6_7_0_for_macOS-Debug/JaffZork_autogen/mocs_compilation.cpp	e799e84dcfbddf42
+410	597	1714862852541521812	CMakeFiles/JaffZork.dir/item.cpp.o	6fb1048b48c2ff4b
+6	44	1714915845902558919	JaffZork_autogen/timestamp	e799e84dcfbddf42
+8	42	1714915979183724588	JaffZork_autogen/timestamp	e799e84dcfbddf42
+8	42	1714915979183724588	JaffZork_autogen/mocs_compilation.cpp	e799e84dcfbddf42
+8	42	1714915979183724588	/Users/andrewjaffray/Documents/Year 1/Block4/JaffZork/build/Qt_6_7_0_for_macOS-Debug/JaffZork_autogen/timestamp	e799e84dcfbddf42
+8	42	1714915979183724588	/Users/andrewjaffray/Documents/Year 1/Block4/JaffZork/build/Qt_6_7_0_for_macOS-Debug/JaffZork_autogen/mocs_compilation.cpp	e799e84dcfbddf42
+43	1047	1714915980178189326	CMakeFiles/JaffZork.dir/gameengine.cpp.o	6c6ea2248021e7e3
+5	220	1714916487611954000	JaffZork_autogen/timestamp	e799e84dcfbddf42
+5	220	1714916487611954000	JaffZork_autogen/mocs_compilation.cpp	e799e84dcfbddf42
+5	220	1714916487611954000	/Users/andrewjaffray/Documents/Year 1/Block4/JaffZork/build/Qt_6_7_0_for_macOS-Debug/JaffZork_autogen/timestamp	e799e84dcfbddf42
+5	220	1714916487611954000	/Users/andrewjaffray/Documents/Year 1/Block4/JaffZork/build/Qt_6_7_0_for_macOS-Debug/JaffZork_autogen/mocs_compilation.cpp	e799e84dcfbddf42
+221	2011	1714916489404544182	CMakeFiles/JaffZork.dir/gameengine.cpp.o	6c6ea2248021e7e3
+220	2433	1714916489825179697	CMakeFiles/JaffZork.dir/JaffZork_autogen/mocs_compilation.cpp.o	c82b3080a68ab1d7
+221	2457	1714916489849390105	CMakeFiles/JaffZork.dir/mainwindow.cpp.o	93029524ac28de3c
+221	2510	1714916489903430098	CMakeFiles/JaffZork.dir/main.cpp.o	80f733b35b03cd60
+2510	2810	1714916490206983424	JaffZork.app/Contents/MacOS/JaffZork	c00c0a14bb937cf7
