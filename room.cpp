@@ -21,10 +21,10 @@ std::string Room::getDescription() const{
 
 void Room::setExits(Room *north, Room *east, Room *south, Room *west){
 
-    exits["north"] = nullptr;
-    exits["south"] = nullptr;
-    exits["east"] = nullptr;
-    exits["west"] = nullptr;
+    exits["north"] = north;
+    exits["south"] = south;
+    exits["east"] = east;
+    exits["west"] = west;
 
 }
 

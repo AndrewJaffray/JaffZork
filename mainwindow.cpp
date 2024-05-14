@@ -2,6 +2,8 @@
     MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), gameEngine(new GameEngine(this)) {
     setupUI();
     connectSignals();
+    gameEngine->startGame();
+    gameEngine->setupRooms();
 }
 
 void MainWindow::setupUI() {

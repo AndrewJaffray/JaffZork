@@ -1,6 +1,7 @@
 #include "gameengine.h"
 #include "room.h"
 #include "player.h"
+#include <QDebug>
 
 GameEngine::GameEngine(QObject *parent) : QObject(parent) {
     setupRooms();
@@ -43,12 +44,18 @@ void GameEngine::movePlayer(const QString& direction) {
     Room* currentRoom = player->getCurrentRoom();
 
     std::string dir = direction.toStdString();
+
+    qDebug() << "Current Room Description:" << QString::fromStdString(currentRoom->getDescription());
+
+    qDebug() << "Attempting to move to: " << QString::fromStdString(dir);
     Room* nextRoom = currentRoom->getExit(dir);
 
     if (nextRoom) {
         player->setCurrentRoom(nextRoom);
 
         QString description = QString::fromStdString(nextRoom->getDescription());
+        qDebug() << "Moved to room:" << description;
+
         emit playerMoved(description);
     } else {
         emit updateStatus("There is no room in that direction.");
