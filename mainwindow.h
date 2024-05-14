@@ -17,6 +17,12 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void look();
+    void pickup();
+    void interact();
+    void showInventory();
+
 private:
     Ui::MainWindow *ui;
     GameEngine *gameEngine;

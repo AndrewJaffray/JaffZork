@@ -15,11 +15,19 @@ GameEngine::~GameEngine() {
     }
 }
 
+void GameEngine::startGame() {
+    emit updateStatus("Game started. Navigate the rooms!");
+}
+
 void GameEngine::setupRooms() {
     // Create rooms
     rooms["hall"] = new Room("You are in a long, dark hallway.");
     rooms["kitchen"] = new Room("You are in a dusty kitchen with an old stove.");
     rooms["library"] = new Room("You are in a quiet, old library filled with books.");
+
+    rooms["hall"]->addItem("Key");
+    rooms["kitchen"]->addItem("Knife");
+    rooms["library"]->addItem("Book");
 
     // Setup room links
     linkRooms();
@@ -36,9 +44,7 @@ void GameEngine::linkRooms() {
     rooms["library"]->setExits(nullptr, rooms["hall"], nullptr, nullptr);
 }
 
-void GameEngine::startGame() {
-    emit updateStatus("Game started. Navigate the rooms!");
-}
+
 
 void GameEngine::movePlayer(const QString& direction) {
     Room* currentRoom = player->getCurrentRoom();
@@ -60,6 +66,10 @@ void GameEngine::movePlayer(const QString& direction) {
     } else {
         emit updateStatus("There is no room in that direction.");
     }
+}
+
+Player* GameEngine::getPlayer() const {
+    return player;
 }
 
 void GameEngine::playerInteract(const QString& action) {

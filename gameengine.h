@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QString>
 #include <map>
+#include <string>
+#include "player.h"
+#include "room.h"
 
     class Room;  // Forward declaration
 class Player;  // Forward declaration
@@ -17,9 +20,10 @@ public:
 
     void setupRooms();
     void startGame();
+    void movePlayer(const QString& direction);
+    Player* getPlayer() const;
 
 public slots:
-    void movePlayer(const QString& direction);
     void playerInteract(const QString& action);
 
 signals:
@@ -29,6 +33,7 @@ signals:
 private:
     Player* player;
     std::map<QString, Room*> rooms;
+
     void linkRooms();  // Helper to set up connections between rooms
 };
 

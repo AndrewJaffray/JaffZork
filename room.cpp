@@ -1,15 +1,6 @@
 #include "room.h"
 
-Room::Room(const std::string& description) : description(description) {
-
-    exits["north"] = nullptr;
-    exits["south"] = nullptr;
-    exits["east"] = nullptr;
-    exits["west"] = nullptr;
-
-
-
-}
+Room::Room(const std::string& description) : description(description) {}
 
 void Room::setDescription(const std::string &description){
     this->description = description;
@@ -40,14 +31,23 @@ Room* Room::getExit(const std::string &direction) const{
     return nullptr;
 }
 
-void Room::setConnectingRoom(const std::string &direction, Room *room){
-    exits[direction] = room;
+void Room::addItem(const std::string &item) {
+    items.push_back(item);
 }
 
-Room* Room::getConnectingRoom(const std::string &direction) const{
-    auto it = exits.find(direction);
-    if (it != exits.end()){
-        return it -> second;
+void Room::removeItem(const std::string &item){
+    auto it = std::find(items.begin(), items.end(), item);
+    if (it != items.end()) {
+        items.erase(it);
     }
-    return nullptr;
 }
+
+bool Room::hasItem(const std::string &item) const {
+    return std::find(items.begin(), items.end(), item) != items.end();
+}
+
+std::vector<std::string> Room::getItems() const {
+    return items;
+}
+
+
