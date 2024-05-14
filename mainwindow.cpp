@@ -1,12 +1,20 @@
 #include "mainwindow.h"
-    MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), gameEngine(new GameEngine(this)) {
-    setupUI();
+#include "ui_mainwindow.h"
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
+    ui(new Ui::MainWindow),
+    gameEngine(new GameEngine(this)) {
+
+    ui->setupUi(this);
     connectSignals();
     gameEngine->startGame();
     gameEngine->setupRooms();
 }
 
-void MainWindow::setupUI() {
+MainWindow::~MainWindow() {
+    delete ui;
+}
+
+/*void MainWindow::setupUI() {
     // Main Widget and Layout
     QWidget* centralWidget = new QWidget(this);
     QVBoxLayout* mainLayout = new QVBoxLayout(centralWidget);
@@ -31,18 +39,18 @@ void MainWindow::setupUI() {
     mainLayout->addLayout(buttonLayout);
     setCentralWidget(centralWidget);
 }
-
+*/
 void MainWindow::connectSignals() {
-    connect(northButton, &QPushButton::clicked, [this]() { gameEngine->movePlayer("north"); });
-    connect(southButton, &QPushButton::clicked, [this]() { gameEngine->movePlayer("south"); });
-    connect(eastButton, &QPushButton::clicked, [this]() { gameEngine->movePlayer("east"); });
-    connect(westButton, &QPushButton::clicked, [this]() { gameEngine->movePlayer("west"); });
+    connect(ui->northButton, &QPushButton::clicked, [this]() { gameEngine->movePlayer("north"); });
+    connect(ui->southButton, &QPushButton::clicked, [this]() { gameEngine->movePlayer("south"); });
+    connect(ui->eastButton, &QPushButton::clicked, [this]() { gameEngine->movePlayer("east"); });
+    connect(ui->westButton, &QPushButton::clicked, [this]() { gameEngine->movePlayer("west"); });
 
     connect(gameEngine, &GameEngine::playerMoved, this, [this](const QString& description) {
-        textDisplay->append(description);
+        ui->textDisplay->append(description);
     });
 
     connect(gameEngine, &GameEngine::updateStatus, this, [this](const QString& status) {
-        textDisplay->append(status);
+        ui->textDisplay->append(status);
     });
 }

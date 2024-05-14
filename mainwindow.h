@@ -8,22 +8,18 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include "gameengine.h"
+#include "ui_mainwindow.h"
 
     class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
 
 private:
-    GameEngine* gameEngine;
-    QTextEdit* textDisplay;
-    QPushButton* northButton;
-    QPushButton* southButton;
-    QPushButton* eastButton;
-    QPushButton* westButton;
-
-    void setupUI();
+    Ui::MainWindow *ui;
+    GameEngine *gameEngine;
     void connectSignals();
 };
 
