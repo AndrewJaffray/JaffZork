@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>924</width>
+    <height>723</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,38 +17,45 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>280</y>
-      <width>329</width>
-      <height>151</height>
+      <x>270</x>
+      <y>400</y>
+      <width>371</width>
+      <height>241</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="1">
-      <widget class="QPushButton" name="northButton">
+     <item row="1" column="1">
+      <widget class="QLabel" name="northLabel">
        <property name="text">
-        <string>northButton</string>
+        <string>northLabel</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="2">
-      <widget class="QPushButton" name="eastButton">
+     <item row="3" column="0">
+      <widget class="QLabel" name="westLabel">
        <property name="text">
-        <string>eastButton</string>
+        <string>westLabel</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="westButton">
+     <item row="4" column="1">
+      <widget class="QLabel" name="southLabel">
        <property name="text">
-        <string>westButton</string>
+        <string>southLabel</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
-      <widget class="QPushButton" name="southButton">
+     <item row="3" column="2">
+      <widget class="QLabel" name="eastLabel">
        <property name="text">
-        <string>southButton</string>
+        <string>eastLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="fantasyLabel">
+       <property name="text">
+        <string>fantasyLabel</string>
        </property>
       </widget>
      </item>
@@ -57,48 +64,60 @@
    <widget class="QTextEdit" name="textDisplay">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>40</y>
-      <width>341</width>
-      <height>191</height>
+      <x>210</x>
+      <y>220</y>
+      <width>501</width>
+      <height>141</height>
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>420</y>
+      <width>141</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="pickUpLabel">
+       <property name="text">
+        <string>pickUpLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="inventoryLabel">
+       <property name="text">
+        <string>inventoryLabel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>440</y>
-      <width>493</width>
-      <height>32</height>
+      <y>420</y>
+      <width>131</width>
+      <height>191</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <widget class="QPushButton" name="lookButton">
+      <widget class="QLabel" name="lookLabel">
        <property name="text">
-        <string>lookButton</string>
+        <string>lookLabel</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pickUpButton">
+      <widget class="QLabel" name="interactLabel">
        <property name="text">
-        <string>pickUpButton</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="interactButton">
-       <property name="text">
-        <string>interactButton</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="inventoryButton">
-       <property name="text">
-        <string>inventoryButton</string>
+        <string>interactLabel</string>
        </property>
       </widget>
      </item>
@@ -110,7 +129,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>924</width>
      <height>36</height>
     </rect>
    </property>

@@ -2,12 +2,19 @@
 #include "ui_mainwindow.h"
 #include "gameengine.h"
 #include "player.h"
+#include <QDebug>
+#include <array>
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
     ui(new Ui::MainWindow),
+
     gameEngine(new GameEngine(this)) {
 
     ui->setupUi(this);
+    setStyleSheet("QMainWindow{ background-image: url(:/new/images/fantasyBackground.png); background-repeat: no-repeat; background-position center; }");
+    setupImages();
     connectSignals();
     gameEngine->startGame();
     gameEngine->setupRooms();
@@ -17,17 +24,74 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
+void MainWindow::setupImages(){
+
+    int labelWidth = 300;
+    int labelHeight = 300;
+
+    std::array<QPair<QLabel*, QString>, 9> labels = {{
+        {ui->northLabel, ":/new/images/northPicture.png"},
+        {ui->southLabel, ":/new/images/southPicture.png"},
+        {ui->eastLabel, ":/new/images/eastPicture.png"},
+        {ui->westLabel, ":/new/images/westPicture.png"},
+        {ui->fantasyLabel, ":/new/images/fantasySquare.png"},
+        {ui->pickUpLabel, ":/new/images/PickUpImage.png"},
+        {ui->inventoryLabel, ":/new/images/InventoryImage.png"},
+        {ui->interactLabel, ":/new/images/InteractImage.png"},
+        {ui->lookLabel, ":/new/images/lookImage.png"}
+    }};
+
+
+    for (const auto& labelPair : labels) {
+        QLabel* label = labelPair.first;
+        QString imagePath = labelPair.second;
+        QPixmap image(imagePath);
+        image = image.scaled(labelWidth, labelHeight, Qt::KeepAspectRatio);
+        label->setPixmap(image);
+        label->setScaledContents(true);
+        label->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+        label->installEventFilter(this);
+    }
+    qDebug() << "Images setup complete";
+}
+
+bool MainWindow::eventFilter(QObject *watched, QEvent *event) {
+
+    if (event->type() == QEvent::MouseButtonPress) {
+        qDebug() << "Mouse button pressed on: " << watched;
+
+        if (watched == ui->northLabel) {
+            qDebug() << "North label clicked";
+            gameEngine -> movePlayer("north");
+            return true;
+        } else if (watched == ui->southLabel) {
+            gameEngine -> movePlayer("south");
+            return true;
+        } else if (watched == ui->eastLabel) {
+            gameEngine -> movePlayer("east");
+            return true;
+        } else if (watched == ui->westLabel) {
+            gameEngine -> movePlayer("west");
+            return true;
+        } else if (watched == ui->pickUpLabel) {
+            pickup();
+            return true;
+        } else if (watched == ui->inventoryLabel) {
+            showInventory();
+            return true;
+        } else if (watched == ui->interactLabel) {
+            interact();
+            return true;
+        } else if (watched == ui->lookLabel) {
+            look();
+            return true;
+        }
+
+    }
+    return QMainWindow::eventFilter(watched,event);
+}
+
 void MainWindow::connectSignals() {
-    connect(ui->northButton, &QPushButton::clicked, [this]() { gameEngine->movePlayer("north"); });
-    connect(ui->southButton, &QPushButton::clicked, [this]() { gameEngine->movePlayer("south"); });
-    connect(ui->eastButton, &QPushButton::clicked, [this]() { gameEngine->movePlayer("east"); });
-    connect(ui->westButton, &QPushButton::clicked, [this]() { gameEngine->movePlayer("west"); });
-
-    connect(ui->lookButton, &QPushButton::clicked, this, &MainWindow::look);
-    connect(ui->pickUpButton, &QPushButton::clicked, this, &MainWindow::pickup);
-    connect(ui->interactButton, &QPushButton::clicked, this, &MainWindow::interact);
-    connect(ui->inventoryButton, &QPushButton::clicked, this, &MainWindow::showInventory);
-
 
     connect(gameEngine, &GameEngine::playerMoved, this, [this](const QString& description) {
         ui->textDisplay->append(description);
@@ -36,6 +100,8 @@ void MainWindow::connectSignals() {
     connect(gameEngine, &GameEngine::updateStatus, this, [this](const QString& status) {
         ui->textDisplay->append(status);
     });
+    qDebug() << "Signals connected";
+
 }
 
 void MainWindow::look(){

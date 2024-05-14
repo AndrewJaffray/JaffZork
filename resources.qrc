@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/new/images">
+        <file>southPicture.png</file>
+        <file>eastPicture.png</file>
+        <file>northPicture.png</file>
+        <file>westPicture.png</file>
+        <file>fantasySquare.png</file>
+        <file>fantasyBackground.png</file>
+        <file>PickUpImage.png</file>
+        <file>InventoryImage.png</file>
+        <file>InteractImage.png</file>
+        <file>lookImage.png</file>
+    </qresource>
+</RCC>

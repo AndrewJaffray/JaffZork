@@ -5,7 +5,7 @@
 
 GameEngine::GameEngine(QObject *parent) : QObject(parent) {
     setupRooms();
-    player = new Player(rooms["hall"]);
+    player = new Player(rooms["cabin"]);
 }
 
 GameEngine::~GameEngine() {
@@ -21,30 +21,28 @@ void GameEngine::startGame() {
 
 void GameEngine::setupRooms() {
     // Create rooms
-    rooms["hall"] = new Room("You are in a long, dark hallway.");
-    rooms["kitchen"] = new Room("You are in a dusty kitchen with an old stove.");
-    rooms["library"] = new Room("You are in a quiet, old library filled with books.");
+    rooms["cabin"] = new Room("You are in your log cabin in the woods.");
+    rooms["forest"] = new Room("You enter the magical forest.");
+    rooms["path"] = new Room("You are on an old dirt path.");
 
-    rooms["hall"]->addItem("Key");
-    rooms["kitchen"]->addItem("Knife");
-    rooms["library"]->addItem("Book");
+    rooms["cabin"]->addItem("Key");
+    rooms["forest"]->addItem("Knife");
+    rooms["path"]->addItem("Book");
 
     // Setup room links
     linkRooms();
 
     // Initial player room
     //player->setCurrentRoom(rooms["hall"]);
-    emit playerMoved(rooms["hall"]->getDescription().c_str());
+    emit playerMoved(rooms["cabin"]->getDescription().c_str());
 }
 
 void GameEngine::linkRooms() {
     // Assuming Room has setExits(Room* north, Room* east, Room* south, Room* west)
-    rooms["hall"]->setExits(nullptr, rooms["kitchen"], nullptr, rooms["library"]);
-    rooms["kitchen"]->setExits(nullptr, nullptr, nullptr, rooms["hall"]);
-    rooms["library"]->setExits(nullptr, rooms["hall"], nullptr, nullptr);
+    rooms["cabin"]->setExits(nullptr, rooms["forest"], nullptr, rooms["path"]);
+    rooms["forest"]->setExits(nullptr, nullptr, nullptr, rooms["cabin"]);
+    rooms["path"]->setExits(nullptr, rooms["cabin"], nullptr, nullptr);
 }
-
-
 
 void GameEngine::movePlayer(const QString& direction) {
     Room* currentRoom = player->getCurrentRoom();
