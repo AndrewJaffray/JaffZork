@@ -1,5 +1,6 @@
 #include "player.h"
 
+//constructor for the player class
 Player::Player(Room* startRoom) : currentRoom(startRoom) {}
 
 void Player::moveTo(Room *newRoom) {
