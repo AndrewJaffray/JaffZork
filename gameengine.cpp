@@ -3,11 +3,14 @@
 #include "player.h"
 #include <QDebug>
 
+//this constructor initialises GameEngine and calls setupRooms to create and link the rooms
+//the player is initialised in the room "cabin"
 GameEngine::GameEngine(QObject *parent) : QObject(parent) {
     setupRooms();
     player = new Player(rooms["cabin"]);
 }
 
+//this deletes the player and all dynamically allocated room objects to prevent memory leaks
 GameEngine::~GameEngine() {
     delete player;
     for (auto& pair : rooms) {
@@ -19,30 +22,36 @@ void GameEngine::startGame() {
     emit updateStatus("Game started. Navigate the rooms!");
 }
 
+
 void GameEngine::setupRooms() {
-    // Create rooms
+    // Creates rooms
     rooms["cabin"] = new Room("You are in your log cabin in the woods.");
     rooms["forest"] = new Room("You enter the magical forest.");
     rooms["path"] = new Room("You are on an old dirt path.");
 
+    // adds items to specific rooms
     rooms["cabin"]->addItem("Key");
     rooms["forest"]->addItem("Knife");
     rooms["path"]->addItem("Book");
 
-    // Setup room links
+    // Setups room links
     linkRooms();
 
     // Initial player room
-    //player->setCurrentRoom(rooms["hall"]);
     emit playerMoved(rooms["cabin"]->getDescription().c_str());
 }
 
 void GameEngine::linkRooms() {
-    // Assuming Room has setExits(Room* north, Room* east, Room* south, Room* west)
+    // Room has the exits (north, east, south, west)
+    //this sets the specific exits for each room
     rooms["cabin"]->setExits(nullptr, rooms["forest"], nullptr, rooms["path"]);
     rooms["forest"]->setExits(nullptr, nullptr, nullptr, rooms["cabin"]);
     rooms["path"]->setExits(nullptr, rooms["cabin"], nullptr, nullptr);
 }
+
+//this moves the player to the room in the direction chosen
+//the method updates the current room if the move is valid and emits the description of the new room
+//if the move is invalid, it emits an update saying there is no room
 
 void GameEngine::movePlayer(const QString& direction) {
     Room* currentRoom = player->getCurrentRoom();
@@ -66,9 +75,11 @@ void GameEngine::movePlayer(const QString& direction) {
     }
 }
 
+//this returns a pointer to the player object
 Player* GameEngine::getPlayer() const {
     return player;
 }
+
 
 void GameEngine::playerInteract(const QString& action) {
     // Example interaction
