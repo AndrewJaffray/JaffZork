@@ -1,5 +1,6 @@
 #include "room.h"
 
+//constructor for room, initialises room with a description
 Room::Room(const std::string& description) : description(description) {}
 
 void Room::setDescription(const std::string &description){
