@@ -1,6 +1,7 @@
 #include "gameengine.h"
 #include "room.h"
 #include "GameExceptions.h"
+#include "global.h"
 #include <QDebug>
 #include <QTimer>
 
@@ -105,8 +106,12 @@ void GameEngine::playerInteract() {
     } else if (currentRoom && currentRoom->getDescription() == "You enter the magical forest.") {
         emit updateStatus("You have hit a spiky tree and taken 25 damage");
         int health =player->health -=25;
-        QString healthStr = QString::number(health); // This converts int to QString
+        treeHealth -= 10;
+
+        QString treeHealthStr = QString::number(treeHealth); // This converts int to QString
+        QString healthStr = QString::number(health);
         emit updateStatus("Health: " + healthStr);
+        emit updateStatus("Tree health: " + treeHealthStr);
     } else {
         emit updateStatus("You cannot use an item here.");
 

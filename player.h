@@ -32,7 +32,7 @@ public:
     void gameOver() override; //implements the virtual function to end the game
 private:
     int health;
-    Room* currentRoom;
+    Room* currentRoom; //pointer to the room object
     Inventory<string> inventory;
 };
 
