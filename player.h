@@ -1,13 +1,13 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-
+#include "GameEntity.h"
 #include "room.h"
 #include <vector> //includes vector container for storing items
 #include <string>
 
-class Player
-{
+class Player : public GameEntity {
+
 public:
     Player(Room* startRoom); //constructor that initializes the player in a starting room.
     void moveTo(Room* newRoom); //Moves the player to a new room.
@@ -24,6 +24,7 @@ public:
     //Returns a copy of the player's inventory.
     //The const qualifier means this function does not modify the Player object.
 
+    void interact() override; //implements the virtual function
 private:
     Room* currentRoom;
     std::vector<std::string> inventory;

@@ -32,6 +32,7 @@ private slots:
     void pickup();
     void interact();
     void showInventory();
+    void onGameOver(const QString& message);
 
 
 private:

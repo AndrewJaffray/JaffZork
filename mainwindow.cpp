@@ -85,7 +85,7 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event) {
             showInventory();
             return true;
         } else if (watched == ui->interactLabel) {
-            interact();
+            gameEngine -> playerInteract();
             return true;
         } else if (watched == ui->lookLabel) {
             look();
@@ -108,8 +108,15 @@ void MainWindow::connectSignals() {
     connect(gameEngine, &GameEngine::updateStatus, this, [this](const QString& status) {
         ui->textDisplay->append(status);
     });
+
+    connect(gameEngine, &GameEngine::gameOver, this, &MainWindow::onGameOver);
+
     qDebug() << "Signals connected";
 
+}
+
+void MainWindow::onGameOver(const QString &message){
+    ui->textDisplay->append(message);
 }
 
 void MainWindow::look(){

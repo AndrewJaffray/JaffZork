@@ -28,10 +28,10 @@ void GameEngine::setupRooms() {
     rooms["cabin"] = new Room("You are in your log cabin in the woods.");
     rooms["forest"] = new Room("You enter the magical forest.");
     rooms["path"] = new Room("You are on an old dirt path.");
+    rooms["castle"] = new Room("you enter a large castle, a chest lies before you");
 
     // adds items to specific rooms
-    rooms["cabin"]->addItem("Key");
-    rooms["forest"]->addItem("Knife");
+    rooms["forest"]->addItem("Key");
     rooms["path"]->addItem("Book");
 
     // Setups room links
@@ -46,7 +46,9 @@ void GameEngine::linkRooms() {
     //this sets the specific exits for each room
     rooms["cabin"]->setExits(nullptr, rooms["forest"], nullptr, rooms["path"]);
     rooms["forest"]->setExits(nullptr, nullptr, nullptr, rooms["cabin"]);
-    rooms["path"]->setExits(nullptr, rooms["cabin"], nullptr, nullptr);
+    rooms["path"]->setExits(rooms["castle"], rooms["cabin"], nullptr, nullptr);
+    rooms["castle"]->setExits(nullptr, nullptr, rooms["path"], nullptr);
+
 }
 
 //this moves the player to the room in the direction chosen
@@ -81,12 +83,15 @@ Player* GameEngine::getPlayer() const {
 }
 
 
-void GameEngine::playerInteract(const QString& action) {
+void GameEngine::playerInteract() {
     // Example interaction
-    if (action == "look") {
+    if (player) {
         Room* currentRoom = player->getCurrentRoom();
+    if (currentRoom && currentRoom->getDescription() == "you enter a large castle, a chest lies before you" && player->hasItem("Key")) {
+            emit gameOver("You have unlocked the chest and found the treasure! Game over.");
+    } else {
+        emit updateStatus("You cannot use an item here.");
 
-        QString roomDescription = QString::fromStdString(currentRoom->getDescription());
-        emit updateStatus("Looking around: " + roomDescription);
+    }
     }
 }

@@ -42,3 +42,7 @@ std::vector<std::string> Player::getInventory() const {
     //returns the player's inventory as a vector of strings
     return inventory;
 }
+void Player::interact() {
+
+    }
+
