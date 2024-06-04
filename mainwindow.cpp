@@ -157,7 +157,7 @@ void MainWindow::pickup() {
 }
 
 void MainWindow::interact(){
-    //I need to put in interact logic here
+    //I need to put specific interact logic here
     ui->textDisplay->append("interact button clicked");
 }
 
