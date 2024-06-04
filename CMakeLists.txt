@@ -27,7 +27,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         room.h room.cpp
         player.h player.cpp
         item.h item.cpp
-        roomwidget.h roomwidget.cpp
+
         resources.qrc
         ItemContainer.h
 
