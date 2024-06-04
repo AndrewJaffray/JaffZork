@@ -7,11 +7,14 @@
 #include <string>
 
 class Player : public GameEntity {
+    friend class GameEngine;
 
 public:
     Player(Room* startRoom); //constructor that initializes the player in a starting room.
     void moveTo(Room* newRoom); //Moves the player to a new room.
     void setCurrentRoom(Room* room); //Sets the player's current room.
+    //void setHealth(int newHealth);
+   // int getHealth() const;
 
     Room* getCurrentRoom() const; //the const qualifier means this function does not modify the Player object.
 
@@ -26,6 +29,7 @@ public:
 
     void interact() override; //implements the virtual function
 private:
+    int health;
     Room* currentRoom;
     std::vector<std::string> inventory;
 };

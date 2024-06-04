@@ -1,6 +1,5 @@
 #include "gameengine.h"
 #include "room.h"
-#include "player.h"
 #include <QDebug>
 
 //this constructor initialises GameEngine and calls setupRooms to create and link the rooms
@@ -9,7 +8,6 @@ GameEngine::GameEngine(QObject *parent) : QObject(parent) {
     setupRooms();
     player = new Player(rooms["cabin"]);
 }
-
 //this deletes the player and all dynamically allocated room objects to prevent memory leaks
 GameEngine::~GameEngine() {
     delete player;
@@ -31,8 +29,8 @@ void GameEngine::setupRooms() {
     rooms["castle"] = new Room("you enter a large castle, a chest lies before you");
 
     // adds items to specific rooms
-    rooms["forest"]->addItem("Key");
-    rooms["path"]->addItem("Book");
+   // rooms["forest"]->addItem("Key");
+    rooms["path"]->addItem("Key");
 
     // Setups room links
     linkRooms();
@@ -89,6 +87,14 @@ void GameEngine::playerInteract() {
         Room* currentRoom = player->getCurrentRoom();
     if (currentRoom && currentRoom->getDescription() == "you enter a large castle, a chest lies before you" && player->hasItem("Key")) {
             emit gameOver("You have unlocked the chest and found the treasure! Game over.");
+
+
+    } else if (currentRoom && currentRoom->getDescription() == "You enter the magical forest.") {
+        emit updateStatus("You have hit a spiky tree and taken 25 damage");
+        int health =player->health -=25;
+       // int health = player->getHealth();
+        QString healthStr = QString::number(health); // This converts int to QString
+        emit updateStatus("Health: " + healthStr);
     } else {
         emit updateStatus("You cannot use an item here.");
 

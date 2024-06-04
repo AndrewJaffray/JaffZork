@@ -1,7 +1,7 @@
 #include "player.h"
 
 //constructor for the player class, initializes the player in the starting room
-Player::Player(Room* startRoom) : currentRoom(startRoom) {}
+Player::Player(Room* startRoom) : health(100), currentRoom(startRoom) {}
 
 void Player::moveTo(Room *newRoom) {
     if (newRoom != nullptr) { // Checks if the new room is not null
@@ -16,6 +16,14 @@ void Player::setCurrentRoom(Room *room){
 Room* Player::getCurrentRoom() const {
     return currentRoom;
 }
+
+//void Player::setHealth(int newHealth){
+  //  health = newHealth;
+//}
+
+//int Player::getHealth() const {
+ //   return health;
+//}
 
 void Player::pickUpItem(const std::string &item){
     if (currentRoom->hasItem(item)) {
