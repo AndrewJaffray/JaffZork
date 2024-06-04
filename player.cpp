@@ -23,7 +23,7 @@ Room* Player::getCurrentRoom() const {
 
 //int Player::getHealth() const {
  //   return health;
-//}
+
 
 void Player::pickUpItem(const std::string &item){
     if (currentRoom->hasItem(item)) {

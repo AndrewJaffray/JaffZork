@@ -8,7 +8,7 @@ GameEngine::GameEngine(QObject *parent) : QObject(parent) {
     setupRooms();
     player = new Player(rooms["cabin"]);
 }
-//this deletes the player and all dynamically allocated room objects to prevent memory leaks
+//this deletes the player and all allocated room objects to prevent memory leaks
 GameEngine::~GameEngine() {
     delete player;
     for (auto& pair : rooms) {
