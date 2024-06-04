@@ -32,6 +32,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ItemContainer.h
 
         GameEntity.h
+        Inventory.h
+        GameExceptions.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET JaffZork APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

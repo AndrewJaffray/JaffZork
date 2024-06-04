@@ -8,6 +8,5 @@ std::string Item::getName() const {
     return name;
 }
 
-void Item::interact(){
 
-}
+

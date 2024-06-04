@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <array>
 
+
 //the constructor for MainWindow that initialises UI and GameEngine
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent), //call the parent class constructor
@@ -109,6 +110,7 @@ void MainWindow::connectSignals() {
         ui->textDisplay->append(status);
     });
 
+    //and gameOver
     connect(gameEngine, &GameEngine::gameOver, this, &MainWindow::onGameOver);
 
     qDebug() << "Signals connected";
@@ -155,7 +157,7 @@ void MainWindow::pickup() {
 }
 
 void MainWindow::interact(){
-    //need to put in interact logic here
+    //I need to put in interact logic here
     ui->textDisplay->append("interact button clicked");
 }
 

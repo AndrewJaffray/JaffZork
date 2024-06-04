@@ -1,4 +1,7 @@
 #include "player.h"
+#include "QApplication"
+
+
 
 //constructor for the player class, initializes the player in the starting room
 Player::Player(Room* startRoom) : health(100), currentRoom(startRoom) {}
@@ -17,40 +20,32 @@ Room* Player::getCurrentRoom() const {
     return currentRoom;
 }
 
-//void Player::setHealth(int newHealth){
-  //  health = newHealth;
-//}
-
-//int Player::getHealth() const {
- //   return health;
-
-
 void Player::pickUpItem(const std::string &item){
     if (currentRoom->hasItem(item)) {
-        inventory.push_back(item); //adds the item to the player's inventory
+        inventory.addItem(item); //adds the item to the player's inventory
         currentRoom->removeItem(item); //removes the item from the current room
     }
 }
 
 void Player::dropItem(const std::string &item){
     //finds the item in the inventory
-    auto it = std::find(inventory.begin(), inventory.end(), item);
-    if (it != inventory.end()) { //checks if the item is in the inventory
-        inventory.erase(it); //removes the item from inventory
+
+    //checks if the item is in the inventory
+        inventory.removeItem(item); //removes the item from inventory
         currentRoom->addItem(item); //adds the item to the current room
     }
-}
+
 
 bool Player::hasItem(const std::string &item) const{
     //returns true if the item is found in the inventory
-    return std::find(inventory.begin(),inventory.end(),item) != inventory.end();
+    return inventory.hasItem(item);
 }
 
 std::vector<std::string> Player::getInventory() const {
     //returns the player's inventory as a vector of strings
-    return inventory;
+    return inventory.getItems();
 }
-void Player::interact() {
-
-    }
+void Player::gameOver() {
+    QApplication::quit();
+ }
 

@@ -1,6 +1,10 @@
 #include "gameengine.h"
 #include "room.h"
+#include "GameExceptions.h"
 #include <QDebug>
+#include <QTimer>
+
+
 
 //this constructor initialises GameEngine and calls setupRooms to create and link the rooms
 //the player is initialised in the room "cabin"
@@ -54,6 +58,7 @@ void GameEngine::linkRooms() {
 //if the move is invalid, it emits an update saying there is no room
 
 void GameEngine::movePlayer(const QString& direction) {
+    try {
     Room* currentRoom = player->getCurrentRoom();
 
     std::string dir = direction.toStdString();
@@ -71,7 +76,12 @@ void GameEngine::movePlayer(const QString& direction) {
 
         emit playerMoved(description);
     } else {
-        emit updateStatus("There is no room in that direction.");
+        //if there is no room in the specified direction, this throws an InvalidMoveException
+        throw InvalidMoveException("There is no room in that direction.");
+    }
+    //this catches any GameExceptions and emits the error message as a status uppdate
+    } catch (const GameException& e) {
+      emit updateStatus(e.what());
     }
 }
 
@@ -88,11 +98,13 @@ void GameEngine::playerInteract() {
     if (currentRoom && currentRoom->getDescription() == "you enter a large castle, a chest lies before you" && player->hasItem("Key")) {
             emit gameOver("You have unlocked the chest and found the treasure! Game over.");
 
+        QTimer::singleShot(3000, [this]() { //ends the game after 3 seconds
+            player ->gameOver();
+            });
 
     } else if (currentRoom && currentRoom->getDescription() == "You enter the magical forest.") {
         emit updateStatus("You have hit a spiky tree and taken 25 damage");
         int health =player->health -=25;
-       // int health = player->getHealth();
         QString healthStr = QString::number(health); // This converts int to QString
         emit updateStatus("Health: " + healthStr);
     } else {

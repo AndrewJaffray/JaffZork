@@ -12,6 +12,8 @@
 #include "gameengine.h"
 #include "ui_mainwindow.h"
 
+
+
     //declares the MainWindow class which inherits from QMainWindow
     class MainWindow : public QMainWindow {
     Q_OBJECT
