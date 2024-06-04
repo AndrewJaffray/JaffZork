@@ -7,7 +7,7 @@
 #include <vector> //includes vector container for storing items
 #include <string>
 
-
+using namespace std;
 
 class Player : public GameEntity {
     friend class GameEngine;
@@ -20,12 +20,12 @@ public:
 
     Room* getCurrentRoom() const; //the const qualifier means this function does not modify the Player object.
 
-    void pickUpItem(const std::string& item); //Adds an item to the player's inventory.
-    void dropItem(const std::string& item); //Removes an item from the player's inventory.
+    void pickUpItem(const string& item); //Adds an item to the player's inventory.
+    void dropItem(const string& item); //Removes an item from the player's inventory.
 
-    bool hasItem(const std:: string& item) const;
+    bool hasItem(const string& item) const;
 
-    std::vector<std::string> getInventory() const;
+    std::vector<string> getInventory() const;
     //Returns a copy of the player's inventory.
     //The const qualifier means this function doesn't modify the Player object.
 
@@ -33,7 +33,7 @@ public:
 private:
     int health;
     Room* currentRoom;
-    Inventory<std::string> inventory;
+    Inventory<string> inventory;
 };
 
 #endif // PLAYER_H
